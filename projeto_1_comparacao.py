@@ -8,14 +8,6 @@ from lista_encadeada_com_indices import ListaEncadeadaIndexada
 import time
 import matplotlib.pyplot as plot
 
-class No:
-    """
-    Nó da lista encadeada que armazena um ID de produto
-    """
-    def __init__(self, id_produto):
-        self.id_produto = id_produto
-        self.proximo = None
-
 def carregar_ids_de_arquivo(nome_arquivo):
     """
     Carrega IDs de produtos de um arquivo de texto
@@ -80,24 +72,20 @@ def main():
     print(f"   Tempo médio: {total_tempo_busca_binaria/len(ids_busca):.10f} s")
 
     # Calculando a diferença:
-    print("\n" + "_" * 60)
-    print("COMPARAÇÃO DE DESEMPENHO")
-    print("_" * 60)
+    print("\n" + "_" * 60 + "\n")
+    print("COMPARAÇÃO DE DESEMPENHO" + "\n")
     print(f"Lista Encadeada Simples: {total_tempo_busca_sequencial:.10f} s")
     print(f"Lista com Índices: {total_tempo_busca_binaria:.10f} s")
     
     if total_tempo_busca_binaria > 0:
         if total_tempo_busca_sequencial > total_tempo_busca_binaria:
             fator = total_tempo_busca_sequencial / total_tempo_busca_binaria
-            print(f"\nA busca com índices foi {fator:.2f}x mais rápida")
+            print(f"\nA busca com índices foi {fator:.2f}x mais rápida\n")
         else:
             fator = total_tempo_busca_binaria / total_tempo_busca_sequencial
-            print(f"\nA busca sequencial foi {fator:.2f}x mais rápida")
-    print("_" * 60)
+            print(f"\nA busca sequencial foi {fator:.2f}x mais rápida\n")
     
-    # Gerando gráfico de desempenho
-    print("\n> Gerando gráfico de desempenho...")
-    
+    # Gerando gráfico de desempenho    
     categorias = ['Lista Encadeada\n(Busca Sequencial)', 'Lista com Índices\n(Busca Binária)']
     tempos_totais = [total_tempo_busca_sequencial * 1000, total_tempo_busca_binaria * 1000]  # Converter para ms para melhor visualização
     
@@ -122,11 +110,10 @@ def main():
     plot.savefig(nome_arquivo_grafico, dpi=300, bbox_inches='tight')
     plot.close()
     
-    print(f"   Arquivo gerado: {nome_arquivo_grafico}")
+    print(f"> Gráfico gerado: {nome_arquivo_grafico}")
     
-    print("\n" + "_" * 60)
-    print("EXECUÇÃO CONCLUÍDA COM SUCESSO!")
-
+    print("_" * 60 + "\n")
+    print("EXECUÇÃO CONCLUÍDA COM SUCESSO!" + "\n")
 
 if __name__ == "__main__":
     main()
