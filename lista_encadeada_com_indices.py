@@ -104,7 +104,7 @@ class ListaEncadeadaIndexada:
         # Retorna uma lista com todos os IDs de produtos
         return [id_produto for id_produto, _ in self.vetor_indices]
     
-def carregar_ids_de_arquivo(nome_arquivo):
+def carregar_ids(nome_arquivo):
     # Carrega IDs de produtos de um arquivo texto
     lista_de_ids = []
     try:
