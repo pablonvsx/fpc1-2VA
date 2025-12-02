@@ -287,28 +287,30 @@ def main():
     plot.close()
     print(f"   Gráfico gerado: {nome_grafico1}")
     
-    # Gráfico 2: Comparação geral (tempo total)
+    # Gráfico 2: Comparação geral (tempo total e média)
     plot.figure(figsize=(10, 7))
     categorias = ['Inserção', 'Intercalação']
     tempos_totais = [tempo_total_insercao * 1000, tempo_total_intercalacao * 1000]  # Converter para ms
+    tempo_medio_insercao_ms = tempo_medio_insercao * 1000
+    tempo_medio_intercalacao_ms = tempo_medio_intercalacao * 1000
     
     barras = plot.bar(categorias, tempos_totais, color=['#FF6B6B', '#4ECDC4'], width=0.6)
     
-    # Adicionar valores nas barras com fator de comparação
+    # Adicionar valores nas barras com tempo total, média e fator de comparação
     fator_geral = (tempo_total_insercao * 1000) / (tempo_total_intercalacao * 1000)
     for i, barra in enumerate(barras):
         altura = barra.get_height()
         if i == 0:  # Inserção
             plot.text(barra.get_x() + barra.get_width()/2., altura,
-                     f'{altura:.2f} ms\n({fator_geral:.1f}x t(inter))',
-                     ha='center', va='bottom', fontsize=10, fontweight='bold')
+                     f'{altura:.2f} ms\n(Média: {tempo_medio_insercao_ms:.2f} ms)\n({fator_geral:.1f}x t(inter))',
+                     ha='center', va='bottom', fontsize=9, fontweight='bold')
         else:  # Intercalação
             plot.text(barra.get_x() + barra.get_width()/2., altura,
-                     f'{altura:.2f} ms',
-                     ha='center', va='bottom', fontsize=11, fontweight='bold')
+                     f'{altura:.2f} ms\n(Média: {tempo_medio_intercalacao_ms:.2f} ms)',
+                     ha='center', va='bottom', fontsize=9, fontweight='bold')
     
     # Ajustar limites do eixo Y para dar mais espaço acima das barras
-    y_max = max(tempos_totais) * 1.15
+    y_max = max(tempos_totais) * 1.2  # Aumentar espaço para acomodar 3 linhas de texto
     plot.ylim(0, y_max)
     
     plot.xlabel('Algoritmo de Ordenação', fontsize=12, fontweight='bold')
@@ -322,43 +324,6 @@ def main():
     plot.savefig(nome_grafico2, dpi=300, bbox_inches='tight')
     plot.close()
     print(f"   Gráfico gerado: {nome_grafico2}")
-    
-    # Gráfico 3: Tempo médio por critério
-    plot.figure(figsize=(10, 7))
-    tempo_medio_insercao_ms = tempo_medio_insercao * 1000
-    tempo_medio_intercalacao_ms = tempo_medio_intercalacao * 1000
-    
-    barras = plot.bar(categorias, [tempo_medio_insercao_ms, tempo_medio_intercalacao_ms], 
-                     color=['#FF6B6B', '#4ECDC4'], width=0.6)
-    
-    # Adicionar valores nas barras com fator de comparação
-    fator_medio = tempo_medio_insercao_ms / tempo_medio_intercalacao_ms
-    for i, barra in enumerate(barras):
-        altura = barra.get_height()
-        if i == 0:  # Inserção
-            plot.text(barra.get_x() + barra.get_width()/2., altura,
-                     f'{altura:.2f} ms\n({fator_medio:.1f}x t(inter))',
-                     ha='center', va='bottom', fontsize=10, fontweight='bold')
-        else:  # Intercalação
-            plot.text(barra.get_x() + barra.get_width()/2., altura,
-                     f'{altura:.2f} ms',
-                     ha='center', va='bottom', fontsize=11, fontweight='bold')
-    
-    # Ajustar limites do eixo Y para dar mais espaço acima das barras
-    y_max = max(tempo_medio_insercao_ms, tempo_medio_intercalacao_ms) * 1.15
-    plot.ylim(0, y_max)
-    
-    plot.xlabel('Algoritmo de Ordenação', fontsize=12, fontweight='bold')
-    plot.ylabel('Tempo Médio por Critério (ms)', fontsize=12, fontweight='bold')
-    plot.title('Tempo Médio de Execução por Critério de Ordenação', 
-              fontsize=14, fontweight='bold', pad=20)
-    plot.grid(axis='y', alpha=0.3, linestyle='--')
-    plot.tight_layout()
-    
-    nome_grafico3 = 'projeto_3/projeto_3_comparacao_media.png'
-    plot.savefig(nome_grafico3, dpi=300, bbox_inches='tight')
-    plot.close()
-    print(f"   Gráfico gerado: {nome_grafico3}")
     
     print("\n" + "_"*60)
     print("EXECUÇÃO CONCLUÍDA COM SUCESSO!")
