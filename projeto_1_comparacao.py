@@ -8,7 +8,7 @@ from lista_encadeada_com_indices import ListaEncadeadaIndexada
 import time
 import matplotlib.pyplot as plot
 
-def carregar_ids_de_arquivo(nome_arquivo):
+def carregar_ids(nome_arquivo):
     """
     Carrega IDs de produtos de um arquivo de texto
     """
@@ -24,8 +24,8 @@ def main():
 
     # Carregamento dos dados
     print("\n> Carregando dados...")
-    ids_produtos = carregar_ids_de_arquivo('projeto_1_lista_IDs_entrada.txt')
-    ids_busca = carregar_ids_de_arquivo('projeto_1_lista_IDs_busca.txt')
+    ids_produtos = carregar_ids('projeto_1_lista_IDs_entrada.txt')
+    ids_busca = carregar_ids('projeto_1_lista_IDs_busca.txt')
     print(f"   IDs de produtos carregados: {len(ids_produtos)}")
     print(f"   IDs para busca carregados: {len(ids_busca)}")
 

@@ -16,10 +16,11 @@ class No:
 class ListaEncadeadaIndexada:
     # Lista encadeada com vetor de índices para busca binária
     # Armazena tuplas no vetor_indices (id, referência_para_nó)
-    def __init__(self):
+    def __init__(self, auto_indexar=True):
         self.ponta = None
         self.tamanho = 0
         self.vetor_indices = []
+        self.auto_indexar = auto_indexar  # Se True, atualiza índices a cada inserção
 
     def inserir_ordenado(self, id_produto):
         # Insere um ID de produto na lista mantendo a ordem crescente
@@ -30,7 +31,8 @@ class ListaEncadeadaIndexada:
         if self.ponta is None:
             self.ponta = novo_no
             self.tamanho += 1
-            self._reajustar_indices()
+            if self.auto_indexar:
+                self._reajustar_indices()
             return 1
         
         # Caso de inserção no início
@@ -38,7 +40,8 @@ class ListaEncadeadaIndexada:
             novo_no.proximo = self.ponta
             self.ponta = novo_no
             self.tamanho += 1
-            self._reajustar_indices()
+            if self.auto_indexar:
+                self._reajustar_indices()
             return 1
         
         # ID já existe no início
@@ -58,11 +61,21 @@ class ListaEncadeadaIndexada:
         novo_no.proximo = atual.proximo
         atual.proximo = novo_no
         self.tamanho += 1
-        self._reajustar_indices()
+        if self.auto_indexar:
+            self._reajustar_indices()
         return 1
-        
+    
     def _reajustar_indices(self):
-        # Reconstrói o vetor de índices
+        # Reconstrói o vetor de índices (usado quando auto_indexar=True)
+        self.vetor_indices = []
+        atual = self.ponta
+        while atual is not None:
+            self.vetor_indices.append((atual.id_produto, atual))
+            atual = atual.proximo
+    
+    def construir_indices(self):
+        # Constrói o vetor de índices após todas as inserções
+        # Deve ser chamado uma única vez após inserir todos os elementos (quando auto_indexar=False)
         self.vetor_indices = []
         atual = self.ponta
         while atual is not None:
@@ -116,19 +129,6 @@ def carregar_ids(nome_arquivo):
     except FileNotFoundError:
         print(f"Arquivo {nome_arquivo} não encontrado.")
     return lista_de_ids
-    
-def carregar_ids_de_busca(nome_arquivo):
-    # Carrega Ids de um arquivo que serão buscados
-    lista_de_ids = []
-    try:
-        with open(nome_arquivo, 'r') as arquivo:
-            for linha in arquivo:
-                linha = linha.strip()
-                if linha:
-                    lista_de_ids.append(int(linha))
-    except FileNotFoundError:
-        print(f"Arquivo {nome_arquivo} não encontrado.")
-    return lista_de_ids
 
 def main():
     print("Projeto 1 - Lista Encadeada com Índices para Busca Binária")
@@ -136,7 +136,7 @@ def main():
     
     # Carregar IDs do arquivo de entrada
     print("\n> Carregando IDs do arquivo de entrada...")
-    ids_entrada = carregar_ids_de_arquivo('projeto_1_lista_IDs_entrada.txt')
+    ids_entrada = carregar_ids('projeto_1_lista_IDs_entrada.txt')
 
     # Inserir IDs na lista encadeada
     print("\n> Inserindo IDs na lista encadeada ordenada...")
@@ -152,12 +152,12 @@ def main():
     print(f"   Total de IDs inseridos: {itens_inseridos}")
     print(f"   IDs duplicados ignorados: {itens_duplicados}")
     
-    print(f"\n> Tamanho da lista encadeada: {lista_encadeada.tamanho} elementos\n")
+    print(f"\n> Tamanho da lista encadeada: {lista_encadeada.tamanho} elementos")
     print(f"> Tamanho do vetor de índices: {len(lista_encadeada.vetor_indices)} elementos")
 
     # Carregar IDs para busca
     print("\n> Carregando IDs para busca...")
-    ids_busca = carregar_ids_de_busca('projeto_1_lista_IDs_busca.txt')
+    ids_busca = carregar_ids('projeto_1_lista_IDs_busca.txt')
     print(f"   Total de IDs carregados para busca: {len(ids_busca)}")
 
     # Realizar buscas e medir tempo

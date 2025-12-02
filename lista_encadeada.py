@@ -81,38 +81,25 @@ class ListaEncadeada:
             atual = atual.proximo
         return ids
 
-def carregar_ids_do_arquivo(nome_arquivo):
+def carregar_ids(nome_arquivo):
     # Carrega IDs de produtos de um arquivo texto
-    ids = []
+    lista_de_ids = []
     try:
         with open(nome_arquivo, 'r') as arquivo_entrada:
             for linha in arquivo_entrada:
                 id_produto = linha.strip()
                 if id_produto:
-                   ids.append(int(id_produto))
+                   lista_de_ids.append(int(id_produto))
     except FileNotFoundError:
         print(f"Arquivo {nome_arquivo} não encontrado.")
-    return ids
-    
-def carregar_ids_busca(nome_arquivo):
-    # Carrega IDs de produtos para busca de um arquivo texto
-    ids = []
-    try:
-        with open(nome_arquivo, 'r') as arquivo_busca:
-            for linha in arquivo_busca:
-                id_produto = linha.strip()
-                if id_produto:
-                    ids.append(int(id_produto))
-    except FileNotFoundError:
-        print(f"Arquivo {nome_arquivo} não encontrado.")
-    return ids
+    return lista_de_ids
 
 def main():
     print("Projeto 1 - Lista Encadeada")
     lista_encadeada = ListaEncadeada()
     # Carregar IDs do arquivo de entrada
     print("\n> Carregando IDs do arquivo de entrada...")
-    ids_entrada = carregar_ids_do_arquivo('projeto_1_lista_IDs_entrada.txt')
+    ids_entrada = carregar_ids('projeto_1_lista_IDs_entrada.txt')
 
     # Inserir Ids na lista
     print("\n> Inserindo IDs na lista encadeada ordenada...")
@@ -132,7 +119,7 @@ def main():
 
     # Carregar IDs para busca
     print("\n> Carregando IDs para busca...")
-    ids_busca = carregar_ids_busca('projeto_1_lista_IDs_busca.txt')
+    ids_busca = carregar_ids('projeto_1_lista_IDs_busca.txt')
     print(f"   Total de IDs carregados para busca: {len(ids_busca)}")
 
     # Realizar buscas e medir tempo
