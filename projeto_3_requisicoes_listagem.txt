@@ -1,0 +1,10 @@
+preco | insercao
+preco | intercalacao
+estoque | insercao
+estoque | intercalacao
+popularidade | insercao
+popularidade | intercalacao
+data | insercao
+data | intercalacao
+nome | insercao
+nome | intercalacao
