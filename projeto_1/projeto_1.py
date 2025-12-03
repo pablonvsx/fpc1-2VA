@@ -153,7 +153,7 @@ def main():
     tempos_totais = [total_tempo_busca_sequencial * 1000, total_tempo_busca_binaria * 1000]  # Converter para ms
     
     plot.figure(figsize=(10, 7))
-    barras = plot.bar(categorias, tempos_totais, color=['#FF6B6B', '#4ECDC4'], width=0.6)
+    barras = plot.bar(categorias, tempos_totais, color=['#001F5C', '#808080'], width=0.6)
     
     # Calcular fator comparativo
     if total_tempo_busca_sequencial > total_tempo_busca_binaria:
