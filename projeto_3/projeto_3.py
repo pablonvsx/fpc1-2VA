@@ -255,8 +255,8 @@ def main():
     largura = 0.35
     
     plot.figure(figsize=(14, 6))
-    barras1 = plot.bar(x - largura/2, tempos_insercao, largura, label='Inserção', color='#FF6B6B')
-    barras2 = plot.bar(x + largura/2, tempos_intercalacao, largura, label='Intercalação', color='#4ECDC4')
+    barras1 = plot.bar(x - largura/2, tempos_insercao, largura, label='Inserção', color='#001f3f')
+    barras2 = plot.bar(x + largura/2, tempos_intercalacao, largura, label='Intercalação', color='#6c757d')
     
     # Adicionar valores nas barras de Inserção com fator de comparação
     for i, barra in enumerate(barras1):
@@ -294,7 +294,7 @@ def main():
     tempo_medio_insercao_ms = tempo_medio_insercao * 1000
     tempo_medio_intercalacao_ms = tempo_medio_intercalacao * 1000
     
-    barras = plot.bar(categorias, tempos_totais, color=['#FF6B6B', '#4ECDC4'], width=0.6)
+    barras = plot.bar(categorias, tempos_totais, color=['#001f3f', '#6c757d'], width=0.6)
     
     # Adicionar valores nas barras com tempo total, média e fator de comparação
     fator_geral = (tempo_total_insercao * 1000) / (tempo_total_intercalacao * 1000)

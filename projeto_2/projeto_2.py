@@ -221,7 +221,7 @@ def main():
     ]  # Converter para ms
     
     plot.figure(figsize=(12, 7))
-    barras = plot.bar(categorias, tempos_totais, color=['#FF6B6B','#4ECDC4', '#95E1D3'], width=0.6)
+    barras = plot.bar(categorias, tempos_totais, color=['#001f3f','#6c757d', '#a0a0a0'], width=0.6)
     
     # Calcular fatores comparativos em relação ao mais rápido
     tempo_min = min(tempos_totais)
