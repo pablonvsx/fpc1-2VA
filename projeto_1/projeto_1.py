@@ -78,7 +78,7 @@ def main():
     print(f"   Tempo médio: {total_tempo_busca_sequencial/len(ids_busca):.10f} s")
     print(f"   IDs encontrados: {itens_encontrados_seq}/{len(ids_busca)}")
 
-    # ========== LISTA ENCADEADA COM ÍNDICES (BUSCA BINÁRIA) ==========
+    # LISTA ENCADEADA COM ÍNDICES (BUSCA BINÁRIA)
     print("\n> Criando Lista Encadeada com Índices...")
     lista_encadeada_indices = ListaEncadeadaIndexada()
     
@@ -118,7 +118,7 @@ def main():
     print(f"   Tempo médio: {total_tempo_busca_binaria/len(ids_busca):.10f} s")
     print(f"   IDs encontrados: {itens_encontrados_bin}/{len(ids_busca)}")
 
-    # ========== COMPARAÇÃO E RESULTADOS ==========
+    # Comparação e resultados
     print("\n" + "_" * 60 + "\n")
     print("COMPARAÇÃO DE DESEMPENHO" + "\n")
     print(f"Lista Encadeada Simples (Busca Sequencial): {total_tempo_busca_sequencial:.10f} s")
@@ -146,7 +146,7 @@ def main():
             arquivo.write(f"{resultado}\n")
     print("   Arquivo gerado: projeto_1_resultado_busca_binaria.txt")
     
-    # ========== GERAÇÃO DE GRÁFICO ==========
+    # Geração de gráfico comparativo
     print("\n> Gerando gráfico de desempenho...")
     
     categorias = ['Lista Encadeada\n(Busca Sequencial)', 'Lista com Índices\n(Busca Binária)']

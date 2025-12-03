@@ -8,7 +8,6 @@ import sys
 import os
 # Adicionar o diretório pai ao path para importar estruturas_dados
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-import estruturas_dados
 from estruturas_dados.lista_encadeada import ListaEncadeada
 from estruturas_dados.lista_encadeada_com_indices import ListaEncadeadaIndexada
 from estruturas_dados.tabela_hash import TabelaHash
@@ -80,7 +79,7 @@ def main():
     print(f"   Tempo médio: {total_tempo_busca_sequencial/len(ids_busca):.10f} s")
     print(f"   IDs encontrados: {itens_encontrados_seq}/{len(ids_busca)}")
 
-    # ========== LISTA ENCADEADA COM ÍNDICES (BUSCA BINÁRIA) ==========
+    # Lista Encadeada com Índices (Busca Binária)
     print("\n> Criando Lista Encadeada com Índices...")
     lista_encadeada_indices = ListaEncadeadaIndexada(auto_indexar=False)
     
@@ -123,7 +122,7 @@ def main():
     print(f"   Tempo médio: {total_tempo_busca_binaria/len(ids_busca):.10f} s")
     print(f"   IDs encontrados: {itens_encontrados_bin}/{len(ids_busca)}")
 
-    # ========== TABELA HASH ==========
+    # Tabela Hash
     print("\n> Criando Tabela Hash...")
     tabela_hash = TabelaHash()
     
@@ -175,7 +174,7 @@ def main():
     print(f"   Tempo médio: {total_tempo_busca_hash/len(ids_busca):.10f} s")
     print(f"   IDs encontrados: {itens_encontrados_hash}/{len(ids_busca)}")
 
-    # ========== COMPARAÇÃO E RESULTADOS ==========
+    # Comparação e resultados
     print("\n" + "_" * 60 + "\n")
     print("COMPARAÇÃO DE DESEMPENHO" + "\n")
     print(f"Lista Encadeada Simples (Busca Sequencial): {total_tempo_busca_sequencial:.10f} s")
@@ -207,7 +206,7 @@ def main():
             arquivo.write(f"{resultado}\n")
     print("   Arquivo gerado: projeto_2_resultado_tabela_hash.txt")
     
-    # ========== GERAÇÃO DE GRÁFICO ==========
+    # Geração de gráfico comparativo
     print("\n> Gerando gráfico de desempenho...")
     
     categorias = [
@@ -222,7 +221,7 @@ def main():
     ]  # Converter para ms
     
     plot.figure(figsize=(12, 7))
-    barras = plot.bar(categorias, tempos_totais, color=['#FF6B6B', '#4ECDC4', '#95E1D3'], width=0.6)
+    barras = plot.bar(categorias, tempos_totais, color=['#FF6B6B','#4ECDC4', '#95E1D3'], width=0.6)
     
     # Calcular fatores comparativos em relação ao mais rápido
     tempo_min = min(tempos_totais)
