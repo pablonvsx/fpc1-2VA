@@ -51,14 +51,6 @@ class ListaEncadeada:
         atual.proximo = novo_no
         self.tamanho += 1
         return 1
-    
-    def inserir_inicio(self, id_produto):
-        # Insere um ID de produto no início da lista (usado quando a ordem não importa)
-        novo_no = No(id_produto)
-        novo_no.proximo = self.ponta
-        self.ponta = novo_no
-        self.tamanho += 1
-        return 1
 
     def buscar(self, id_produto):
         # Busca um ID de produto na lista e retorna 1 se encontrado e -1 se não encontrado
@@ -68,23 +60,5 @@ class ListaEncadeada:
                 return 1
             atual = atual.proximo
         return -1
-    
-    def exibir(self):
-        # Exibe todos os IDs de produtos na lista
-        atual = self.ponta
-        ids = []
-        while atual is not None:
-            ids.append(str(atual.id_produto))
-            atual = atual.proximo
-        return " -> ".join(ids) if ids else "Lista vazia"
-    
-    def obter_todos_ids(self):
-        # Retorna uma lista com todos os IDs de produtos
-        ids = []
-        atual = self.ponta
-        while atual is not None:
-            ids.append(atual.id_produto)
-            atual = atual.proximo
-        return ids
 
 
