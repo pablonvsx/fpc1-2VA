@@ -95,22 +95,5 @@ class ListaEncadeadaIndexada:
                 direita = meio - 1
         
         return -1  # Não encontrado
-    
-    def exibir(self):
-        # Exibe os IDs de produtos na lista
-        atual = self.ponta
-        ids = []
-        while atual is not None:
-            ids.append(str(atual.id_produto))
-            atual = atual.proximo
-        return " -> ".join(ids) if ids else "Lista vazia"
-    
-    def exibir_vetor_indices(self):
-        # Exibe o vetor de índices
-        return [id_produto for id_produto, _ in self.vetor_indices]
-    
-    def obter_todos_ids(self):
-        # Retorna uma lista com todos os IDs de produtos
-        return [id_produto for id_produto, _ in self.vetor_indices]
 
 
